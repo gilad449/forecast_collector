@@ -14,7 +14,7 @@ class forecastCollector():
         
         try:
             page = requests.get(self.url)
-            bs_page = bs(page.text)
+            bs_page = bs(page.text, "html5lib")
             return bs_page
         except Exception as e:
             print(e) 
