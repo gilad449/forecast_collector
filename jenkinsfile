@@ -1,0 +1,23 @@
+#!/usr/bin/env groovy
+pipeline{
+   agent any
+   stages{
+      stage ('Prepare files') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/gilad449/forecast_collector/']]])       
+                }
+            }
+      stage ('verify hash and run script') {
+                steps {
+                     sh "md5sum -c forecast_collector_hash"
+                     sh "./forecast_collector.py"
+                }
+            }
+      stage ('validate output schema') {
+                steps {
+                     sh "json validate --schema-file=schema.json --document-file=forecast_data.json"
+                }
+            }
+   }
+   
+}

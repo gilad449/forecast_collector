@@ -1,0 +1,38 @@
+
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "patternProperties": {
+    "^.*$": {
+      "type": "object",
+      "properties": {
+        "DESC": {
+          "type": "string"
+        },
+        "TEMP": {
+          "type": "string"
+        },
+        "FEEL": {
+          "type": "string"
+        },
+        "PRECIP": {
+          "type": "string"
+        },
+        "HUMIDITY": {
+          "type": "string"
+        },
+        "WIND": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "DESC",
+        "TEMP",
+        "FEEL",
+        "PRECIP",
+        "HUMIDITY",
+        "WIND"
+      ]
+    }
+  }
+}
